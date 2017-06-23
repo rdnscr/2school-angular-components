@@ -1,0 +1,35 @@
+<md-sidenav-container fullscreen>
+  <md-sidenav mode="side" opened="true" #sidenav>
+    <md-toolbar color=primary>
+    </md-toolbar>
+    <md-nav-list>
+      <a *ngFor="let navItem of navItems" md-list-item [routerLink]="[navItem.path]" routerLinkActive="active">
+        {{navItem.data.title}}
+      </a>
+      <hr>
+      <footer class="footer">
+        <span>WebPack Angular 2 Starter</span>
+        <span>by <a href="http://www.2bit.ch">2BIT GmbH</a> based on <strong>@AngularClass</strong></span>
+        <div class="logo">
+          <a href="http://www.2bit.ch">
+            <img class="logo-icon" src="./assets/img/2bit.svg">
+          </a>
+        </div>
+      </footer>
+    </md-nav-list>
+  </md-sidenav>
+  <div>
+    <md-toolbar color="primary">
+      <button md-icon-button (click)="sidenav.toggle()">
+        <md-icon class="md-24" >menu</md-icon>
+      </button>
+      <div>
+        <h1>2BIT Angular2 examples</h1>
+      </div>
+    </md-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>    
+  </div>
+</md-sidenav-container>

@@ -1,0 +1,57 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+// Custom 2BIT style palette
+$mat-twobit: (
+    50: #FEE580,
+    100: #FEE066,
+    200: #FFDB4C,
+    300: #FFD634,
+    400: #FFD119,
+    500: #FFCC00,
+    600: #E6B800,
+    700: #CDA301,
+    800: #B38E00,
+    900: #987A00,
+    A100: #ff8a80,
+    A200: #ff5252,
+    A400: #ff1744,
+    A700: #d50000,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: $black-87-opacity,
+        600: $black-87-opacity,
+        700: $black-87-opacity,
+        800: $black-87-opacity,
+        900: $black-87-opacity,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: $black-87-opacity,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$twobit-app-primary: mat-palette($mat-twobit);
+$twobit-app-accent:  mat-palette($mat-grey, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$twobit-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$twobit-app-theme: mat-light-theme($twobit-app-primary, $twobit-app-accent, $twobit-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($twobit-app-theme);
