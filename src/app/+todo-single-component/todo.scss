@@ -1,0 +1,27 @@
+h2 {
+  font-size: large;
+}
+
+md-card.add-item {
+  margin-bottom: 25px;
+
+  md-input-container {
+    width: 50%;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  md-card {
+    width: 43%;
+  }
+}
+
+md-card-title {
+  font-weight: 500;
+  font-size: medium;
+}
