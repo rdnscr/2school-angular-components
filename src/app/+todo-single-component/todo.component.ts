@@ -6,12 +6,13 @@ import { Http } from '@angular/http';
 import { MdSnackBar } from '@angular/material';
 
 @Component({
-    selector: 'todo',
+    selector: 'app-todo',
     templateUrl: './todo.component.html',
+    styleUrls: ['todo.scss'],
 })
 export class TodoComponent implements OnInit, OnDestroy {
-    private todos: TodoItem[];
-    private orig: TodoItem[];
+    private todoItems: TodoItem[];
+    private originalItems: TodoItem[];
 
     @ViewChild('description') private descriptionInput: ElementRef;
 
@@ -23,27 +24,24 @@ export class TodoComponent implements OnInit, OnDestroy {
         this.http.get('assets/mock-data/todos.json')
             .map((result) => result.json())
             .subscribe((result) => {
-                this.orig = result;
-                this.todos = cloneArray(result);
+                this.originalItems = result;
+                this.todoItems = cloneArray(result);
             });
     }
 
     public ngOnDestroy() {
-
     }
 
     public onAdd(newItemDescription: string) {
         const newItem = { description: newItemDescription, checked: false, lastModified: new Date(), id: 0 };
         this.descriptionInput.nativeElement.value = '';
-        this.snackBar.open(`Item with description "${newItemDescription} added`, null, { duration: 1500 });
-        this.todos.push(newItem);
-        this.snackBar.open('add item', null, { duration: 1500 });
-
+        this.displaySnackbarMessage(`Item with description "${newItemDescription} added`);
+        this.todoItems.push(newItem);
     }
 
     public onReset(): void {
-        this.todos = cloneArray(this.orig);
-        this.snackBar.open('reset todos', null, { duration: 1500 });
+        this.todoItems = cloneArray(this.originalItems);
+        this.displaySnackbarMessage('reset todos');
     }
 
     public get itemsOpen(): TodoItem[] {
@@ -57,14 +55,17 @@ export class TodoComponent implements OnInit, OnDestroy {
     public onChecked(checked: boolean, item: TodoItem) {
         item.checked = checked;
         item.lastModified = new Date();
-        this.snackBar.open('checked / unchecked item', null, { duration: 1500 });
+        let snackbarMessage = item.checked ? `'${item.description}' was finished` : `'${item.description}' was moved to todo list`;
+        this.displaySnackbarMessage(snackbarMessage);
     }
 
     private filterCheckedBy(checked: boolean): TodoItem[] {
-        if (this.todos) {
-            return this.todos.filter((item) => item.checked === checked);
+        if (this.todoItems) {
+            return this.todoItems.filter((item) => item.checked === checked);
         }
-
         return undefined;
     }
+
+    private displaySnackbarMessage = (message: string) => 
+      this.snackBar.open(message, null, { duration: 1500 });
 }
