@@ -34,10 +34,9 @@ type StoreType = {
  */
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, HomeComponent, NoContentComponent,],
+  declarations: [AppComponent, HomeComponent, NoContentComponent],
   imports: [BrowserModule, FormsModule, HttpModule, BrowserAnimationsModule, MaterialModule,
     RouterModule.forRoot(ROUTES, { useHash: false }), CommonModule.forRoot(), StateModule.forRoot()],
-
   providers: [...ENV_PROVIDERS]
 })
 export class AppModule {
