@@ -55,3 +55,20 @@ $twobit-app-theme: mat-light-theme($twobit-app-primary, $twobit-app-accent, $two
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($twobit-app-theme);
+
+$primary: map-get($twobit-app-theme, primary);
+$accent: map-get($twobit-app-theme, accent);
+$foreground: map-get($twobit-app-theme, foreground);
+
+$border: mat-color($primary, 100);
+$border-hover: mat-color($primary, 800);
+$background-disabled: mat-color($primary, 50);
+
+$prefered: #1BC98E;
+$primary-font: #fff;
+$background-white: #fff;
+$notice-font: mat-color($foreground, hint-text);
+$title-font: #6872c4;
+$subheader-font: #393939;
+$detail-header: #cccccc;
+$detail-content: #eeeeee;

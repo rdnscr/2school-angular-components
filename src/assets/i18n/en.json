@@ -1,0 +1,12 @@
+{
+    "HELLO": "hello {{value}}!",
+    "TODO_DESCRIPTION": "Todo Description",
+    "ADD_ITEM": "Add a new Item",
+    "LANGUAGE" : "Language",
+    "ADD" : "Add",
+    "TODO_EXAMPLE" : "Todo Example",
+    "TRANSLATE": "Translate",
+    "TODO": "Todo",
+    "DONE": "Done",
+    "RESET": "Reset"
+}

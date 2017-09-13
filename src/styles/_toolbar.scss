@@ -1,0 +1,83 @@
+@import '~@angular/material/theming';
+@import './_material';
+
+app-toolbar {
+  .mat-toolbar {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  md-toolbar {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 0px;
+
+    div[fxLayout="column"] > div[fxFlex="grow"] {
+      flex: 1 0 auto !important;
+    }
+
+    .header-font-sm {
+      font-size: 9pt;
+    }
+
+    .mat-toolbar-layout {
+      margin: 0;
+      width: 100%;
+
+      .mat-toolbar-row {
+        height: auto;
+      }
+    }
+
+    .logo {
+      margin-top: 10px;
+      max-height: 48px;
+    }
+    .logo-sm {
+      margin-top: 4px;
+      max-height: 32px;
+    }
+    .header-logo-sm {
+      padding-right: 20px;
+    }
+
+    .header-text {
+      color: white;
+    }
+
+    .header-text-sm {
+      color: white;
+      font-size: 9pt;
+      margin-top: -16px;
+    }
+
+    .header-countdown-sm {
+      color: white;
+      font-size: 9pt;
+      margin-right: 10px;
+    }
+    .header-countdown-lg{
+      color: white;
+      margin-right: 10px;
+    }
+
+    .header-button-sm {
+      color: mat-color($primary);
+      margin-right: 0px;
+      margin-top: -4px;
+      margin-bottom: 6px;
+    }
+    .header-button-lg{
+      color: mat-color($primary);
+      margin-right: 16px;
+      margin-left: 16px;
+      flex-grow: 0 !important;
+    }
+    .mat-raised-button.mat-small {
+      height: 26px;
+      line-height: 20px;
+      min-height: 20px;
+      font-size: 9pt;
+      margin: 0;
+    }
+  }
+}

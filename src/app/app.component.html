@@ -1,35 +1,44 @@
 <md-sidenav-container fullscreen>
-  <md-sidenav mode="side" opened="true" #sidenav>
-    <md-toolbar color=primary>
-    </md-toolbar>
-    <md-nav-list>
-      <a *ngFor="let navItem of navItems" md-list-item [routerLink]="[navItem.path]" routerLinkActive="active">
-        {{navItem.data.title}}
-      </a>
-      <hr>
-      <footer class="footer">
-        <span>WebPack Angular 2 Starter</span>
-        <span>by <a href="http://www.2bit.ch">2BIT GmbH</a> based on <strong>@AngularClass</strong></span>
-        <div class="logo">
-          <a href="http://www.2bit.ch">
-            <img class="logo-icon" src="./assets/img/2bit.svg">
-          </a>
+  <md-sidenav class="mat-elevation-z2" #sidenav mode="over" align="start" closed="true">
+    <div class="badge">
+      <div fxFlex="none" class="header-logo" class.lt-md="header-logo-sm">
+        <a href="http://www.2bit.ch/" tabindex="-1">
+          <img src="/assets/img/2bit.svg"
+            class="logo"
+            class.lt-md="logo-sm"/>
+        </a>
+      </div>
+      <img class="cover" src="/assets/img/sidenav/badge.png" />
+      <md-icon (click)="sidenav.close()" class="black hide-icon">arrow_back</md-icon>
+    </div>
+    <div class="menu" fxLayout="column" fxLayoutAlign="start stretch">
+      <md-nav-list fxFlex="nogrow">
+        <a *ngFor="let navItem of navItems" md-list-item [routerLink]="[navItem.path]" (click)="sidenav.close()" routerLinkActive="active">
+              {{navItem.data.title}}
+            </a>
+      </md-nav-list>
+      <div fxLayoutAlign="center end" fxFlex="nogrow" class="bottom">
+        <div fxLayout="column" fxLayoutAlign="start center" fxFlex="nogrow">
+          <div translate="menu.powered"></div>
+          <div>Angular examples provided by <a href="www.2bit.ch"><b>2BIT GmbH</b></a></div>
         </div>
-      </footer>
-    </md-nav-list>
+      </div>
+    </div>
   </md-sidenav>
-  <div>
-    <md-toolbar color="primary">
-      <button md-icon-button (click)="sidenav.toggle()">
-        <md-icon class="md-24" >menu</md-icon>
-      </button>
-      <div>
-        <h1>2BIT Angular2 examples</h1>
+  <div class="content" fxLayout="column">
+    <md-toolbar color="primary" class="mat-elevation-z4" fxFlex="nogrow">
+      <button md-icon-button (click)="sidenav.open()" fxFlex="nogrow">
+          <md-icon class="md-24 white">menu</md-icon>
+        </button>
+      <div fxLayout="row" fxLayoutAlign="end center" fxFlex="grow">
+        <div fxFlex="grow" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="center center"
+          class.lt-md="header-font-sm">
+          <h1>2BIT Angular2 examples</h1>
+        </div>
       </div>
     </md-toolbar>
-
-    <main>
+    <main fxFlex="grow">
       <router-outlet></router-outlet>
-    </main>    
+    </main>
   </div>
 </md-sidenav-container>

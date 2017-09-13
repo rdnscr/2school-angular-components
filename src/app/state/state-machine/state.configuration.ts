@@ -1,12 +1,12 @@
-import { OpaqueToken } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
 import { stateFn, Action } from '../state-machine';
 import { AppState } from '../';
 
-export const initStateToken = new OpaqueToken('initState');
-export const dispatcherToken = new OpaqueToken('dispatcher');
-export const stateToken = new OpaqueToken('state');
+export const initStateToken = new InjectionToken('initState');
+export const dispatcherToken = new InjectionToken('dispatcher');
+export const stateToken = new InjectionToken('state');
 
 let stateObs: ReplaySubject<AppState>;
 export function stateFactory(initState: AppState, actions: Subject<Action>): ReplaySubject<AppState> {

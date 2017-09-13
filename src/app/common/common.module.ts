@@ -5,7 +5,7 @@ import { initStateToken } from '../state';
 
 export function disposerFactory() { return new Disposer(); }
 export function stateFactory() { return new PlaygroundState(); }
-export const APP_WIDE_SINGLETON: Provider[] = <Provider[]>[{ provide: Disposer, useFactory: disposerFactory },
+export const APP_WIDE_SINGLETON: Provider[] = <Provider[]> [{ provide: Disposer, useFactory: disposerFactory },
 { provide: initStateToken, useFactory: stateFactory }];
 
 // Application wide singletons should only be declared in for root!

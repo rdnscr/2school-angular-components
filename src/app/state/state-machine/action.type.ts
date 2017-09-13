@@ -1,3 +1,5 @@
+/* tslint:disable */
+
 import { pathCopyHelper } from '../utils';
 import { AppState } from '../';
 

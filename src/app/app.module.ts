@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule, ApplicationRef } from '@angular/core';
-import { MdSidenavModule, MdToolbarModule, MaterialModule } from '@angular/material';
+import { MdSidenavModule, MdToolbarModule, MdIconModule, MdButtonModule, MdListModule } from '@angular/material';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { PlaygroundState } from './common';
 import { StateModule } from './state';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -35,8 +36,9 @@ type StoreType = {
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent, HomeComponent, NoContentComponent],
-  imports: [BrowserModule, FormsModule, HttpModule, BrowserAnimationsModule, MaterialModule,
-    RouterModule.forRoot(ROUTES, { useHash: false }), CommonModule.forRoot(), StateModule.forRoot()],
+  imports: [BrowserModule, FormsModule, HttpModule, MdSidenavModule, MdToolbarModule, MdIconModule, MdButtonModule, MdListModule,
+    FlexLayoutModule, BrowserAnimationsModule, RouterModule.forRoot(ROUTES, { useHash: false }), CommonModule.forRoot(),
+    StateModule.forRoot()],
   providers: [...ENV_PROVIDERS]
 })
 export class AppModule {
@@ -82,5 +84,4 @@ export class AppModule {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
-
 }

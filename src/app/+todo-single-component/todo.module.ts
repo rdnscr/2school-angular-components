@@ -1,4 +1,4 @@
-import { MaterialModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdSnackBarModule, MdCardModule, MdCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from './todo.component';
@@ -8,7 +8,8 @@ import { todoRoutesModule } from './todo.routes';
 console.log('`Todo` bundle loaded asynchronously');
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, todoRoutesModule],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, MdButtonModule, MdInputModule, MdSnackBarModule,
+        MdCardModule, MdCheckboxModule, todoRoutesModule],
     declarations: [TodoComponent],
 })
 export class TodoSingleComponentModule {

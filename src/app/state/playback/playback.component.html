@@ -1,3 +1,5 @@
-    <button md-button [disabled]="!hasPrevious" (click)="onPrevious()">prev</button>    
+<md-card>
+    <button md-button [disabled]="!hasPrevious" (click)="onPrevious()">prev</button>
     <span>{{stateIndex}}</span>
     <button md-button [disabled]="!hasNext" (click)="onNext()">forward</button>
+</md-card>

@@ -1,0 +1,12 @@
+{
+    "HELLO": "Hallo {{value}}!",
+    "TODO_DESCRIPTION": "Todo Beschreibung",
+    "ADD_ITEM": "Neues Todo hinzufügen",
+    "LANGUAGE" : "Sprache",
+    "ADD" : "Hinzufügen",
+    "TODO_EXAMPLE" : "Todo Beispiel",
+    "TRANSLATE": "Übersetzung",
+    "TODO": "Zu Erledigen",
+    "DONE": "Erledigt",
+    "RESET": "Zurücksetzen"
+}
