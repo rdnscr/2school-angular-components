@@ -1,4 +1,19 @@
-md-sidenav-container {
+@import '../styles/_variables';
+
+h2 {
+  font-size: large;
+}
+
+div, h1, h2 {
+  box-sizing: border-box;
+}
+
+mat-card-title {
+  font-weight: 500;
+  font-size: medium;
+}
+
+mat-sidenav-container {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -12,29 +27,17 @@ md-sidenav-container {
         padding: 0;
         border-bottom: 1 solid lightgray;
   
-        md-list-item {
-          md-icon {
-            margin-right: 10px;
-          }
-          .icon {
-            width: 20px;
-            text-align: center;
-            vertical-align: middle;
-            margin-right: 20px;
-  
-            img {
-              height: 20px;
-              width: auto;
-            }
-          }
+        mat-list-item {        
           .mat-list-item-content {
             color: black;
           }
         }
       }
+
       .menu {
         margin-top:160px;
       }
+
       .badge {
         position:absolute;
         .header-logo {
@@ -45,10 +48,12 @@ md-sidenav-container {
             width: auto;
             height: auto;
           }
+
         .cover {
             position:absolute;
             z-index: 2;
         }
+
         .hide-icon {
             position: absolute;
             z-index: 2;
@@ -57,53 +62,24 @@ md-sidenav-container {
             font-size:36px;
             cursor: pointer;
           }
-      }    
+      }  
+
       .bottom {
         text-align: center;
         margin-bottom: 12px;
+
         div {
           margin-top: 12px;
           font-size: 12px;
           color: #676767;
         }
-        img {
-          margin-top: 12px;
-        }
       }
     }
+    
     .content, main {
-      margin: 0;
-      width: 100%;
-      height: 100%;
+      padding: 0px 10px;
       min-height: 380px;
       min-height: 380px;
-    }
-    .content {
-      .tool-img
-      {
-        width: 16px;
-        margin-left: 8px;
-        margin-right: 8px;
-      }
-      .tool-img-12
-      {
-        width: 12px;
-      }
-      .search {
-        .mat-input-infix {
-          padding: 0px;
-        }
-        .search-input {
-          margin-left: 8px;
-          margin-right: 8px;
-        }
-        .mat-input-placeholder {
-          font-size: 16px;
-        }
-      }
-      .search-hidden {
-        display: none;
-      }
     }
   }
   

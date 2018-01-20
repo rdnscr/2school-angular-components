@@ -1,13 +1,13 @@
-import { MdButtonModule, MdInputModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatCardModule } from '@angular/material';
 import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { STATE_MACHINE_CONFIG } from './state-machine';
 import { StatePlaybackComponent } from './playback';
 
-const APP_WIDE_SINGLETON: Provider[] = <Provider[]> [...STATE_MACHINE_CONFIG];
+const APP_WIDE_SINGLETON: Provider[] = [...STATE_MACHINE_CONFIG] as Provider[];
 
 // Application wide singletons should only be declared in for root!
 @NgModule({
-    imports: [MdButtonModule, MdInputModule],
+    imports: [MatButtonModule, MatInputModule, MatCardModule],
     declarations: [StatePlaybackComponent],
     exports: [StatePlaybackComponent]
 })

@@ -11,7 +11,9 @@ import { stateToken } from './state';
  */
 @Component({
   selector: 'app',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   public name = '2BIT Angular Demos';

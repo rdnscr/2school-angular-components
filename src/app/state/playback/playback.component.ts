@@ -1,3 +1,4 @@
+import { Component, Inject, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -5,22 +6,20 @@ import { Subject } from 'rxjs/Subject';
 import { Action, dispatcherToken, stateToken } from '../state-machine';
 import { Disposer } from '../../common';
 import { AppState } from './..';
-import { Component, Inject, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-// in future only import what is necessary
-import 'rxjs';
+import 'rxjs/add/operator/take';
 
 @Component({
     selector: 'state-playback',
     templateUrl: './playback.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatePlaybackComponent implements OnInit, OnDestroy {
     public stateIndex: number = 0;
     private maxState: number = 0;
 
     constructor( @Inject(stateToken) private state: ReplaySubject<AppState>, @Inject(dispatcherToken) private dispatcher: Subject<Action>,
-                 private disposer: Disposer) {
+                 private disposer: Disposer, private cd: ChangeDetectorRef) {
 
     }
 
@@ -39,6 +38,7 @@ export class StatePlaybackComponent implements OnInit, OnDestroy {
             if (this.stateIndex === (this.maxState - 1)) {
                 this.stateIndex = this.maxState;
             }
+            this.cd.markForCheck(); // trigger change detection since we are in on push mode
         }));
     }
 

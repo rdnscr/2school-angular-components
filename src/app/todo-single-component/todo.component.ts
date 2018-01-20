@@ -1,9 +1,9 @@
-import { cloneArray } from '../state/utils';
-import { TodoItem } from '../common';
 import { Component, Inject, OnInit, OnDestroy, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Http } from '@angular/http';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { cloneArray } from '../state/utils';
+import { TodoItem } from '../common';
 
 @Component({
     selector: 'todo',
@@ -15,13 +15,12 @@ export class TodoComponent implements OnInit, OnDestroy {
 
     @ViewChild('description') private descriptionInput: ElementRef;
 
-    constructor(private http: Http, private snackBar: MdSnackBar) {
+    constructor(private http: HttpClient, private snackBar: MatSnackBar) {
 
     }
 
     public ngOnInit() {
-        this.http.get('assets/mock-data/todos.json')
-            .map((result) => result.json())
+        this.http.get<TodoItem[]>('assets/mock-data/todos.json')
             .subscribe((result) => {
                 this.orig = result;
                 this.todos = cloneArray(result);

@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import 'variables';
 // Plus imports for other components in your app.
 
 // Include the base styles for Angular Material core. We include this here so that you only
@@ -7,20 +8,20 @@
 
 // Custom 2BIT style palette
 $mat-twobit: (
-    50: #FEE580,
-    100: #FEE066,
-    200: #FFDB4C,
-    300: #FFD634,
-    400: #FFD119,
-    500: #FFCC00,
-    600: #E6B800,
-    700: #CDA301,
-    800: #B38E00,
-    900: #987A00,
-    A100: #ff8a80,
-    A200: #ff5252,
-    A400: #ff1744,
-    A700: #d50000,
+    50: $p50,
+    100: $p100,
+    200: $p200,
+    300: $p300,
+    400: $p400,
+    500: $p500,
+    600: $p600,
+    700: $p700,
+    800: $p800,
+    900: $p900,
+    A100: $A100,
+    A200: $A200,
+    A400: $A400,
+    A700: $A700,
     contrast: (
         50: $black-87-opacity,
         100: $black-87-opacity,
@@ -59,16 +60,3 @@ $twobit-app-theme: mat-light-theme($twobit-app-primary, $twobit-app-accent, $two
 $primary: map-get($twobit-app-theme, primary);
 $accent: map-get($twobit-app-theme, accent);
 $foreground: map-get($twobit-app-theme, foreground);
-
-$border: mat-color($primary, 100);
-$border-hover: mat-color($primary, 800);
-$background-disabled: mat-color($primary, 50);
-
-$prefered: #1BC98E;
-$primary-font: #fff;
-$background-white: #fff;
-$notice-font: mat-color($foreground, hint-text);
-$title-font: #6872c4;
-$subheader-font: #393939;
-$detail-header: #cccccc;
-$detail-content: #eeeeee;

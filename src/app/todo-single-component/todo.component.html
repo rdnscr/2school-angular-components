@@ -1,0 +1,53 @@
+<div class="content" fxLayout="column" fxLayoutGap="25px">
+    <h1>Todo example</h1>
+    <h2>Single Component</h2>
+
+    <form novalidate (submit)="onAdd(description.value)">
+        <mat-card class="add-item">
+            <mat-card-header>
+                <mat-card-title>Add a new Item</mat-card-title>
+            </mat-card-header>
+            <mat-form-field>
+                <input matInput placeholder="Todo Beschreibung" #description>
+            </mat-form-field>
+            <button type="submit" mat-button>Add</button>
+        </mat-card>
+    </form>
+
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="25px">
+        <mat-card fxFlex="50">
+            <mat-card-header>
+                <mat-card-title>📝 Todo</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let open of itemsOpen">
+                        <div>
+                            <mat-checkbox [ngModel]="open.checked" (ngModelChange)="onChecked($event, open)">{{open.description}}</mat-checkbox>
+                            <span class="modified-date"> {{open.lastModified | date}} </span>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex="50">
+            <mat-card-header>
+                <mat-card-title>✅ Done</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let done of itemsDone">
+                        <div>
+                            <mat-checkbox [ngModel]="done.checked" (ngModelChange)="onChecked($event, done)">{{done.description}}</mat-checkbox>
+                            <span class="modified-date"> {{done.lastModified | date}} </span>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)=onReset()>Reset</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
