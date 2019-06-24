@@ -4,7 +4,7 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'todo', pathMatch: 'full' },
   {
     path: 'todo',
-    loadChildren: './todo/todo.module#TodoSingleComponentModule',
+    loadChildren: () => import('./todo/todo.module').then(m => m.TodoSingleComponentModule),
     data: { title: 'Single Component' }
   }
 ];

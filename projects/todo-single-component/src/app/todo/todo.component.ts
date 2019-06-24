@@ -11,7 +11,7 @@ export class TodoComponent implements OnInit, OnDestroy {
     private todos: TodoItem[];
     private orig: TodoItem[];
 
-    @ViewChild('description') private descriptionInput: ElementRef;
+    @ViewChild('description', { static: true }) private descriptionInput: ElementRef;
 
     constructor(private http: HttpClient, private snackBar: MatSnackBar) {
 
