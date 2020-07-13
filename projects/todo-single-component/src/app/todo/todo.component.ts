@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { cloneArray, TodoItem } from '../shared';
 
 @Component({
@@ -17,7 +17,7 @@ export class TodoComponent implements OnInit, OnDestroy {
 
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.http.get<TodoItem[]>('assets/mock-data/todos.json')
             .subscribe((result) => {
                 this.orig = result;
@@ -25,11 +25,11 @@ export class TodoComponent implements OnInit, OnDestroy {
             });
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
 
     }
 
-    public onAdd(newItemDescription: string) {
+    public onAdd(newItemDescription: string): void {
         const newItem = { description: newItemDescription, checked: false, lastModified: new Date(), id: 0 };
         this.descriptionInput.nativeElement.value = '';
         this.snackBar.open(`Item with description "${newItemDescription} added`, null, { duration: 1500 });
@@ -51,7 +51,7 @@ export class TodoComponent implements OnInit, OnDestroy {
         return this.filterCheckedBy(true);
     }
 
-    public onChecked(checked: boolean, item: TodoItem) {
+    public onChecked(checked: boolean, item: TodoItem): void {
         item.checked = checked;
         item.lastModified = new Date();
         this.snackBar.open('checked / unchecked item', null, { duration: 1500 });
