@@ -8,10 +8,10 @@ import { cloneArray, TodoItem } from '../shared';
     templateUrl: './todo.component.html',
 })
 export class TodoComponent implements OnInit, OnDestroy {
-    private todos: TodoItem[];
-    private orig: TodoItem[];
+    private todos: TodoItem[] = [];
+    private orig: TodoItem[] = [];
 
-    @ViewChild('description', { static: true }) private descriptionInput: ElementRef;
+    @ViewChild('description', { static: true }) private descriptionInput: ElementRef | undefined;
 
     constructor(private http: HttpClient, private snackBar: MatSnackBar) {
 
@@ -31,33 +31,37 @@ export class TodoComponent implements OnInit, OnDestroy {
 
     public onAdd(newItemDescription: string): void {
         const newItem = { description: newItemDescription, checked: false, lastModified: new Date(), id: 0 };
-        this.descriptionInput.nativeElement.value = '';
-        this.snackBar.open(`Item with description "${newItemDescription} added`, null, { duration: 1500 });
+
+        if(this.descriptionInput){
+          this.descriptionInput.nativeElement.value = '';
+        }
+
+        this.snackBar.open(`Item with description "${newItemDescription} added`, undefined, { duration: 1500 });
         this.todos.push(newItem);
-        this.snackBar.open('add item', null, { duration: 1500 });
+        this.snackBar.open('add item', undefined, { duration: 1500 });
 
     }
 
     public onReset(): void {
         this.todos = cloneArray(this.orig);
-        this.snackBar.open('reset todos', null, { duration: 1500 });
+        this.snackBar.open('reset todos', undefined, { duration: 1500 });
     }
 
-    public get itemsOpen(): TodoItem[] {
+    public get itemsOpen(): TodoItem[] | undefined {
         return this.filterCheckedBy(false);
     }
 
-    public get itemsDone(): TodoItem[] {
+    public get itemsDone(): TodoItem[] | undefined {
         return this.filterCheckedBy(true);
     }
 
     public onChecked(checked: boolean, item: TodoItem): void {
         item.checked = checked;
         item.lastModified = new Date();
-        this.snackBar.open('checked / unchecked item', null, { duration: 1500 });
+        this.snackBar.open('checked / unchecked item', undefined, { duration: 1500 });
     }
 
-    private filterCheckedBy(checked: boolean): TodoItem[] {
+    private filterCheckedBy(checked: boolean): TodoItem[] | undefined {
         if (this.todos) {
             return this.todos.filter((item) => item.checked === checked);
         }
