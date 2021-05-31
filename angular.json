@@ -88,14 +88,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/todo-single-component/tsconfig.app.json",
-              "projects/todo-single-component/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/todo-single-component//**/*.ts",
+              "projects/todo-single-component//**/*.html"
             ]
           }
         }

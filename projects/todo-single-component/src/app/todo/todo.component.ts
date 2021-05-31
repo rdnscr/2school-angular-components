@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { cloneArray, TodoItem } from '../shared';
 
@@ -7,7 +7,7 @@ import { cloneArray, TodoItem } from '../shared';
     selector: 'todo-view',
     templateUrl: './todo.component.html',
 })
-export class TodoComponent implements OnInit, OnDestroy {
+export class TodoComponent implements OnInit {
     private todos: TodoItem[] = [];
     private orig: TodoItem[] = [];
 
@@ -23,10 +23,6 @@ export class TodoComponent implements OnInit, OnDestroy {
                 this.orig = result;
                 this.todos = cloneArray(result);
             });
-    }
-
-    public ngOnDestroy(): void {
-
     }
 
     public onAdd(newItemDescription: string): void {
