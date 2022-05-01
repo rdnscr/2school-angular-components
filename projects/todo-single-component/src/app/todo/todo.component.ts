@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { cloneArray, TodoItem } from '../shared';
+import { TodoService } from './services/todo.service';
 
 @Component({
     selector: 'todo-view',
@@ -11,31 +11,19 @@ export class TodoComponent implements OnInit {
     private todos: TodoItem[] = [];
     private orig: TodoItem[] = [];
 
-    @ViewChild('description', { static: true }) private descriptionInput: ElementRef | undefined;
-
-    constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+    constructor(private snackBar: MatSnackBar, private todoService: TodoService) {
 
     }
 
     public ngOnInit(): void {
-        this.http.get<TodoItem[]>('assets/mock-data/todos.json')
-            .subscribe((result) => {
-                this.orig = result;
-                this.todos = cloneArray(result);
-            });
+        this.todoService.load().subscribe((result) => {
+          this.orig = result;
+          this.todos = cloneArray(result);
+      });
     }
 
-    public onAdd(newItemDescription: string): void {
-        const newItem = { description: newItemDescription, checked: false, lastModified: new Date(), id: 0 };
-
-        if(this.descriptionInput){
-          this.descriptionInput.nativeElement.value = '';
-        }
-
-        this.snackBar.open(`Item with description "${newItemDescription} added`, undefined, { duration: 1500 });
-        this.todos.push(newItem);
-        this.snackBar.open('add item', undefined, { duration: 1500 });
-
+    public onAdded(newItem: TodoItem) {
+      this.todos.push(newItem);
     }
 
     public onReset(): void {
