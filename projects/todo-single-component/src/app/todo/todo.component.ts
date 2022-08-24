@@ -1,33 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { cloneArray, TodoItem } from '../shared';
-import { TodoService } from './services/todo.service';
 
 @Component({
     selector: 'todo-view',
     templateUrl: './todo.component.html',
 })
 export class TodoComponent implements OnInit {
-    private todos: TodoItem[] = [];
-    private orig: TodoItem[] = [];
+    private todos: TodoItem[] | undefined;
+    private orig: TodoItem[] | undefined;
 
-    constructor(private snackBar: MatSnackBar, private todoService: TodoService) {
+    @ViewChild('description', { static: true }) private descriptionInput: ElementRef | undefined;
+
+    constructor(private http: HttpClient, private snackBar: MatSnackBar) {
 
     }
 
-    public ngOnInit(): void {
-        this.todoService.load().subscribe((result) => {
-          this.orig = result;
-          this.todos = cloneArray(result);
-      });
+    public ngOnInit() {
+        this.http.get<TodoItem[]>('assets/mock-data/todos.json')
+            .subscribe((result) => {
+                this.orig = result;
+                this.todos = cloneArray(result);
+            });
     }
 
-    public onAdded(newItem: TodoItem) {
-      this.todos.push(newItem);
+    public onAdd(newItemDescription: string) {
+        const newItem = { description: newItemDescription, checked: false, lastModified: new Date(), id: 0 };
+
+        if(this.descriptionInput) {
+          this.descriptionInput.nativeElement.value = '';
+        }
+
+        this.snackBar.open(`Item with description "${newItemDescription} added`, undefined, { duration: 1500 });
+        this.todos?.push(newItem);
+        this.snackBar.open('add item', undefined, { duration: 1500 });
     }
 
     public onReset(): void {
-        this.todos = cloneArray(this.orig);
+        this.todos = this.orig ? cloneArray(this.orig) : this.orig;
         this.snackBar.open('reset todos', undefined, { duration: 1500 });
     }
 
@@ -39,7 +50,7 @@ export class TodoComponent implements OnInit {
         return this.filterCheckedBy(true);
     }
 
-    public onChecked(checked: boolean, item: TodoItem): void {
+    public onChecked(checked: boolean, item: TodoItem) {
         item.checked = checked;
         item.lastModified = new Date();
         this.snackBar.open('checked / unchecked item', undefined, { duration: 1500 });
