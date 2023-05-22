@@ -9,11 +9,6 @@ h2 {
     box-sizing: border-box;
 }
 
-mat-card-title {
-    font-weight: 500;
-    font-size: medium;
-}
-
 mat-sidenav-container {
     margin: 0;
     width: 100%;
@@ -25,11 +20,6 @@ mat-sidenav-container {
         .mat-nav-list {
             padding: 0;
             border-bottom: 1 solid lightgray;
-            mat-list-item {
-                .mat-list-item-content {
-                    color: black;
-                }
-            }
         }
         .menu {
             margin-top: 160px;
