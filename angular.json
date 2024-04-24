@@ -11,12 +11,15 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/todo-single-component",
+            "outputPath": {
+              "base": "dist/todo-single-component"
+            },
             "index": "projects/todo-single-component/src/index.html",
-            "main": "projects/todo-single-component/src/main.ts",
-            "polyfills": "projects/todo-single-component/src/polyfills.ts",
+            "polyfills": [
+              "projects/todo-single-component/src/polyfills.ts"
+            ],
             "tsConfig": "projects/todo-single-component/tsconfig.app.json",
             "assets": [
               "projects/todo-single-component/src/favicon.png",
@@ -26,16 +29,20 @@
               "projects/todo-single-component/src/styles.scss"
             ],
             "scripts": [],
-            "aot": false,
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "projects/todo-single-component/src/main.ts"
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "projects/todo-single-component/src/environments/environment.ts",
@@ -46,28 +53,25 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "extractLicenses": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "todo-single-component:build"
+            "buildTarget": "todo-single-component:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "todo-single-component:build:production"
+              "buildTarget": "todo-single-component:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "todo-single-component:build"
+            "buildTarget": "todo-single-component:build"
           }
         },
         "test": {

@@ -1,11 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { cloneArray, TodoItem } from '../shared';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgFor, DatePipe } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { FlexModule } from '@ngbracket/ngx-layout/flex';
 
 @Component({
     selector: 'todo-view',
     templateUrl: './todo.component.html',
+    standalone: true,
+    imports: [
+        FlexModule,
+        FormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatListModule,
+        NgFor,
+        MatCheckboxModule,
+        DatePipe,
+        MatSnackBarModule,
+    ],
 })
 export class TodoComponent implements OnInit {
     private todos: TodoItem[] | undefined;

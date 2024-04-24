@@ -1,12 +1,11 @@
-import { RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 import { TodoComponent } from './todo.component';
 
-const todoRoutes = [
-    {
-        path: '', children: [
-            { path: '', component: TodoComponent },
-        ]
-    },
-];
-
-export const todoRoutesModule = RouterModule.forChild(todoRoutes);
+export default [
+  {
+      path: '',
+      children: [
+          { path: '', component: TodoComponent },
+      ]
+  },
+] satisfies Route[];
