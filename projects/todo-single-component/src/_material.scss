@@ -1,10 +1,13 @@
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
 @import 'variables';
 // Plus imports for other components in your app.
 
 @include mat.all-component-typographies();
 @include mat.core();
+
+$material-symbols-font-path: 'material-symbols/';
+
+$black-87-opacity: rgba(black, 0.87);
 
 // Custom 2BIT style palette
 $mat-twobit: (
