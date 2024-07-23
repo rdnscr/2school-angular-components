@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import {} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 if (environment.production) {
   enableProdMode();
@@ -16,7 +16,8 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(BrowserModule, MatIconModule, MatSidenavModule, MatToolbarModule, HttpClientModule),
+        importProvidersFrom(BrowserModule, MatIconModule, MatSidenavModule, MatToolbarModule),
+        provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
         provideRouter(appRoutes, withPreloading(NoPreloading)),
     ]
